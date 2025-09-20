@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Indonesia kidTrusted Billing</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      color: #0f0;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      flex-direction: column;
+    }
+
+    #logo {
+      width: 70px;
+      height: 70px;
+      margin-bottom: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #0f0;
+    }
+
+    #log {
+      font-size: 1rem;
+      white-space: pre;
+      text-align: center;
+      margin-bottom: 2rem;
+      height: 100px;
+      overflow: hidden;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 1rem 2.5rem;
+      background: linear-gradient(145deg, #00ff00, #006400);
+      color: #000;
+      font-weight: 800;
+      font-size: 1.2rem;
+      font-family: 'Courier New', monospace;
+      border: 2px solid #00ff00;
+      border-radius: 12px;
+      text-decoration: none;
+      text-transform: uppercase;
+      box-shadow:
+        0 0 5px #00ff00,
+        0 0 10px #00ff00,
+        0 0 20px #00ff00,
+        0 0 40px #00ff00 inset;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+      animation: pulse 2s infinite;
+    }
+
+    .btn:hover {
+      background: #00ff00;
+      color: #000;
+      transform: scale(1.05);
+      box-shadow:
+        0 0 10px #00ff00,
+        0 0 20px #00ff00,
+        0 0 40px #00ff00,
+        0 0 80px #00ff00 inset;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 10px #00ff00; }
+      50% { box-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00 inset; }
+      100% { box-shadow: 0 0 10px #00ff00; }
+    }
+  </style>
+</head>
+<body>
+  <img id="logo" src="https://files.catbox.moe/tlqgc4.jpg" alt="Indonesia kid" />
+  <div id="log"></div>
+  <button id="enterBtn" class="btn" style="display:none;" onclick="redirectToBilling()">Bill with Heroku</button>
+
+  <!-- Hacker typing sound -->
+  <audio id="typeSound" src="https://cdn.pixabay.com/audio/2023/03/30/audio_f13ec9b0cd.mp3" preload="auto"></audio>
+
+  <script>
+    const logs = [
+      "Initializing billing engine...",
+      "Checking system integrity...",
+      "Establishing secure connection...",
+      "Verifying user authority...",
+      "Access Denied.",
+      "Retrying authentication...",
+      "Access Granted.",
+      "Welcome to shadow tee Trusted Billing"
+    ];
+
+    const logContainer = document.getElementById("log");
+    const typeSound = document.getElementById("typeSound");
+    let index = 0;
+    let isDeleting = false;
+    let charIndex = 0;
+
+    function playSound() {
+      typeSound.currentTime = 0;
+      typeSound.play();
+    }
+
+    function typeLog() {
+      let currentLog = logs[index];
+      let displayText = isDeleting
+        ? currentLog.substring(0, charIndex--)
+        : currentLog.substring(0, charIndex++);
+
+      logContainer.textContent = displayText;
+
+      if (!isDeleting && charIndex === currentLog.length) {
+        setTimeout(() => {
+          isDeleting = true;
+          typeLog();
+        }, 800);
+        return;
+      }
+
+      if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        index++;
+        if (index === logs.length) {
+          showEnterButton();
+          return;
+        }
+      }
+
+      if (!isDeleting) playSound();
+
+      setTimeout(typeLog, isDeleting ? 30 : 50);
+    }
+
+    function showEnterButton() {
+      document.getElementById("enterBtn").style.display = "inline-flex";
+    }
+
+    function redirectToBilling() {
+      logContainer.textContent = "";
+      index = 0;
+      charIndex = 0;
+      isDeleting = false;
+      logs.splice(0, logs.length, 
+        "Connecting to Heroku...",
+        "Preparing payment gateway...",
+        "Sending encrypted payload...",
+        "Heroku Billing Initialized.",
+        "Opening secure chat..."
+      );
+      typeLog();
+      setTimeout(() => {
+        window.location.href = "https://wa.me/2766532196/(!?6?text=hello%20james%20i%20want%20to%20bill%20my%20account%20im%20ready%20to%20pay";
+      }, 8000);
+    }
+
+    window.onload = () => {
+      typeLog();
+    };
+  </script>
+</body>
+</html>
+  <!-- Hacker typing sound -->
+  <audio id="typeSound" src="https://cdn.pixabay.com/audio/2023/03/30/audio_f13ec9b0cd.mp3" preload="auto"></audio>
+
+  <script>
+    const logs = [
+      "Initializing billing engine...",
+      "Checking system integrity...",
+      "Establishing secure connection...",
+      "Verifying user authority...",
+      "Access Denied.",
+      "Retrying authentication...",
+      "Access Granted.",
+      "Welcome to shadow tee Trusted Billing"
+    ];
+
+    const logContainer = document.getElementById("log");
+    const typeSound = document.getElementById("typeSound");
+    let index = 0;
+    let isDeleting = false;
+    let charIndex = 0;
+
+    function playSound() {
+      typeSound.currentTime = 0;
+      typeSound.play();
+    }
+
+    function typeLog() {
+      let currentLog = logs[index];
+      let displayText = isDeleting
+        ? currentLog.substring(0, charIndex--)
+        : currentLog.substring(0, charIndex++);
+
+      logContainer.textContent = displayText;
+
+      if (!isDeleting && charIndex === currentLog.length) {
+        setTimeout(() => {
+          isDeleting = true;
+          typeLog();
+        }, 800);
+        return;
+      }
+
+      if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        index++;
+        if (index === logs.length) {
+          showEnterButton();
+          return;
+        }
+      }
+
+      if (!isDeleting) playSound();
+
+      setTimeout(typeLog, isDeleting ? 30 : 50);
+    }
+
+    function showEnterButton() {
+      document.getElementById("enterBtn").style.display = "inline-flex";
+    }
+
+    function redirectToBilling() {
+      logContainer.textContent = "";
+      index = 0;
+      charIndex = 0;
+      isDeleting = false;
+      logs.splice(0, logs.length, 
+        "Connecting to Heroku...",
+        "Preparing payment gateway...",
+        "Sending encrypted payload...",
+        "Heroku Billing Initialized.",
+        "Opening secure chat..."
+      );
+      typeLog();
+      setTimeout(() => {
+        window.location.href = "https://wa.me/27712943636?text=hello%20james%20i%20want%20to%20bill%20my%20account%20im%20ready%20to%20pay";
+      }, 8000);
+    }
+
+    window.onload = () => {
+      typeLog();
+    };
+  </script>
+</body>
+</html>
+  </div><a class="back-button" href="index2.html"></a>
+
+</body>
+</html>

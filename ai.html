@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>INDONESIA KID AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@300;400;500&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    /* [Your CSS from original preserved, shortened here for brevity] */
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: #020a16;
+      color: #e6f1ff;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #app-container {
+      background: rgba(2, 10, 22, 0.95);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 217, 255, 0.25);
+      border-radius: 12px;
+      width: 95%;
+      max-width: 800px;
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 0 40px rgba(0,0,0,0.6);
+      overflow: hidden;
+    }
+    header {
+      padding: 20px;
+      text-align: center;
+      background: rgba(0, 217, 255, 0.1);
+      border-bottom: 1px solid rgba(0, 217, 255, 0.25);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5em;
+      color: #00d9ff;
+      text-shadow: 0 0 8px #00d9ff;
+    }
+    #chat-window {
+      flex-grow: 1;
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .message {
+      padding: 10px 18px;
+      border-radius: 10px;
+      max-width: 80%;
+      line-height: 1.6;
+    }
+    .user-message {
+      background: #ffb800;
+      color: #010409;
+      align-self: flex-end;
+    }
+    .bella-message {
+      background: rgba(5, 20, 40, 0.9);
+      border: 1px solid rgba(0, 217, 255, 0.25);
+      align-self: flex-start;
+    }
+    footer {
+      display: flex;
+      padding: 15px;
+      gap: 8px;
+      background: rgba(0, 217, 255, 0.05);
+      border-top: 1px solid rgba(0, 217, 255, 0.25);
+    }
+    #user-input {
+      flex-grow: 1;
+      padding: 0 15px;
+      border: 1px solid rgba(0, 217, 255, 0.25);
+      background: rgba(3, 10, 25, 0.9);
+      border-radius: 8px;
+      height: 48px;
+      color: #e6f1ff;
+      font-size: 1em;
+      outline: none;
+    }
+    button {
+      width: 48px;
+      height: 48px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #send-btn { background: #00d9ff; color: #010409; }
+    #mic-btn { background: #ffb800; color: #010409; }
+    #tts-btn { background: rgba(255,255,255,0.1); color: #fff; }
+  </style>
+</head>
+<body>
+  <div id="app-container">
+    <header>INDONESIA KID'S AI</header>
+    <main id="chat-window">
+      <div class="bella-message">Hello, I AM INDO AI. Ask me anything!</div>
+    </main>
+    <footer>
+      <input type="text" id="user-input" placeholder="Type your message..." />
+      <button id="send-btn"></button>
+      <button id="mic-btn"></button>
+      <button id="tts-btn"></button>
+    </footer>
+  </div>
+
+  <script>
+    const input = document.getElementById("user-input");
+    const chat = document.getElementById("chat-window");
+    const sendBtn = document.getElementById("send-btn");
+    const micBtn = document.getElementById("mic-btn");
+    const ttsBtn = document.getElementById("tts-btn");
+
+    sendBtn.onclick = () => {
+      const text = input.value.trim();
+      if (!text) return;
+      appendMessage(text, "user-message");
+      input.value = "";
+      setTimeout(() => {
+        appendMessage(generateReply(text), "bella-message");
+      }, 800);
+    };
+
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") sendBtn.click();
+    });
+
+    function appendMessage(text, cls) {
+      const msg = document.createElement("div");
+      msg.className = `message ${cls}`;
+      msg.innerText = text;
+      chat.appendChild(msg);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function generateReply(userText) {
+      return ` You said: "${userText}"\n indo AI is still learning to serve you better.`;
+    }
+
+    micBtn.onclick = () => {
+      alert( "Mic feature coming soon to indo AI.");
+    };
+
+    ttsBtn.onclick = () => {
+      const lastMsg = [...chat.querySelectorAll('.bella-message')].pop();
+      if (!lastMsg) return;
+      const synth = window.speechSynthesis;
+      const utter = new SpeechSynthesisUtterance(lastMsg.innerText);
+      synth.speak(utter);
+    };
+  </script>
+</body>
+</html>
+  </div><a class="back-button" href="index2.html">CLICK HERE¸</a>
+
+</body>
+</html>
