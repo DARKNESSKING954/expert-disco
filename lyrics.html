@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lyrics Finder | Indo Tech</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #fffafc, #ffeef3);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #e91e63;
+      margin-bottom: 1rem;
+    }
+
+    input, button {
+      width: 90%;
+      padding: 12px;
+      margin: 10px 0;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    button {
+      background-color: #e91e63;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #d81b60;
+    }
+
+    .output {
+      background: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      text-align: left;
+      white-space: pre-wrap;
+    }
+
+    .copy-btn {
+      display: none;
+      background-color: #4caf50;
+      margin-top: 10px;
+    }
+
+    /* Beautiful flower falling effect */
+    .flower {
+      position: absolute;
+      top: -60px;
+      width: 40px;
+      height: 40px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      pointer-events: none;
+      animation: fall linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-60px) rotate(0deg);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0.8;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>🌸Indonesia kid's Lyrics Finder</h1>
+
+    <input type="text" id="keyword" placeholder="Enter keyword (e.g. duka)" />
+    <input type="number" id="amount" placeholder="Number of results (default 3)" />
+    <button onclick="fetchLyrics()">Search</button>
+    <button id="copyBtn" class="copy-btn" onclick="copyLyrics()">📋 Copy Results</button>
+
+    <div class="output" id="lyricsOutput">Results will appear here...</div>
+  </div>
+
+  <script>
+    // Load beautiful flower PNGs
+    const flowerImages = [
+      "https://cdn-icons-png.flaticon.com/512/681/681494.png",
+      "https://cdn-icons-png.flaticon.com/512/3585/3585060.png",
+      "https://cdn-icons-png.flaticon.com/512/765/765821.png",
+      "https://cdn-icons-png.flaticon.com/512/3595/3595455.png"
+    ];
+
+    // Create falling flowers
+    for (let i = 0; i < 25; i++) {
+      const flower = document.createElement('div');
+      flower.classList.add('flower');
+      flower.style.left = `${Math.random() * 100}vw`;
+      flower.style.animationDuration = `${5 + Math.random() * 5}s`;
+      flower.style.animationDelay = `${Math.random() * 5}s`;
+      flower.style.opacity = (0.4 + Math.random() * 0.6).toFixed(2);
+      flower.style.backgroundImage = `url('${flowerImages[Math.floor(Math.random() * flowerImages.length)]}')`;
+      document.body.appendChild(flower);
+    }
+
+    async function fetchLyrics() {
+      const keyword = document.getElementById('keyword').value.trim();
+      const amount = parseInt(document.getElementById('amount').value.trim()) || 3;
+      const output = document.getElementById('lyricsOutput');
+      const copyBtn = document.getElementById('copyBtn');
+
+      if (!keyword) {
+        output.textContent = '❌ Please enter a valid keyword.';
+        copyBtn.style.display = 'none';
+        return;
+      }
+
+      output.textContent = '🔍 Searching...';
+      copyBtn.style.display = 'none';
+
+      try {
+        const res = await fetch(`https://apikey.sazxofficial.web.id/api/search/lyrics?q=${encodeURIComponent(keyword)}`);
+        const data = await res.json();
+
+        if (!data.status || !data.result || data.result.length === 0) {
+          output.textContent = '❌ Lyrics not found.';
+          return;
+        }
+
+        const results = data.result.slice(0, amount).map((item, i) => {
+          return `${i + 1}. ${item.title} — ${item.artist}\n\n${item.lyricSingkat.trim()}`;
+        }).join('\n\n────────────\n\n');
+
+        output.textContent = `✅ Results for: ${keyword}\n\n${results}`;
+        copyBtn.style.display = 'inline-block';
+      } catch (e) {
+        console.error(e);
+        output.textContent = '❌ An error occurred while fetching lyrics.';
+        copyBtn.style.display = 'none';
+      }
+    }
+
+    function copyLyrics() {
+      const text = document.getElementById('lyricsOutput').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("✅ Lyrics copied to clipboard!");
+      }).catch(err => {
+        alert("❌ Failed to copy.");
+        console.error(err);
+      });
+    }
+  </script>
+
+</body>
+</html>
+  </div><a class="back-button" href="index2.html">⬅ 𝗯𝗮𝗰𝗸</a>
+
+</body>
+</html>
